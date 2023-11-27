@@ -1,7 +1,12 @@
-import { Inter } from "next/font/google";
+import { createClient } from "contentful";
 
-const inter = Inter({ subsets: ["latin"] });
+export async function getStaticProps() {
+  const client = createClient({
+    space: process.env.NEXT_CONTENTFUL_SPACE_ID,
+    accessToken: process.env.NEXT_CONTENTFUL_DELIVERY_ACCESS_TOKEN,
+  });
+}
 
-export default function Home() {
+export default function Recipes() {
   return <div>Recipe Lists</div>;
 }
