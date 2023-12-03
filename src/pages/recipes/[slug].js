@@ -29,6 +29,16 @@ export async function getStaticProps({ params }) {
     "fields.slug": params.slug,
   });
 
+  //if user enter a link of a recipe that does not exist
+  if (!items.length) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: { recipe: items[0] },
     revalidate: 1,
